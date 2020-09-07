@@ -1,0 +1,49 @@
+<div class="form-container">
+    <h1 *ngIf="!id">  Add Poadcast</h1>
+    <h1 *ngIf="id">  Edit Poadcast</h1>
+    <form [formGroup]="podcastForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" formControlName="title" required aria-label="Podcast Title">
+        
+            <div *ngIf="title.errors" class="invalid-feedback">
+                <div *ngIf="title.errors?.required" class="invalid-feedback">
+                    Title is required
+                </div>
+            </div>
+        
+            <div *ngIf="title.errors" class="invalid-feedback">
+                <div *ngIf="title.errors?.maxlength" class="invalid-feedback">
+                    Title must not be more than 20 characters long.
+                </div>
+            </div> 
+        </div>
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <textarea class="form-control" rowa="10" cols="100" formControlName="desc" requiredcaria-label="Podcast Description"></textarea>
+        
+            <div *ngIf="desc.errors" class="invalid-feedback">
+                <div *ngIf="desc.errors?.required" class="invalid-feedback">
+                    Description is required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="categories">Categories</label>
+            <tag-input [ngModel]="items" formControlName="categories" aria-label="Podcast Categories">
+            </tag-input>
+         
+            <div *ngIf="categories.errors" class="invalid-feedback">
+                <div *ngIf="categories.errors?.required" class="invalid-feedback">
+                    Category is required
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" formControlName="userId" [ngModel]="user.sub" >
+            <button type="submit" *ngIf="!id" class="btn btn-success">Submit</button>
+            <button type="submit" *ngIf="id" class="btn btn-success">Update</button>
+            <button type="button" (click)="back()" class="btn btn-success">Back</button>
+        </div>
+    </form>
+</div>

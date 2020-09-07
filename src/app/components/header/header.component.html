@@ -1,0 +1,33 @@
+<div class="header" >
+  <div class="header-left">
+  <nav class="navbar navbar-light">
+      <div class="container">
+        <a class="navbar-brand" routerLink="/">Podcasts</a>  
+        <ul class="nav navbar-nav pull-xs-right">  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active"> Home </a>
+          </li>  
+          <li class="nav-item" *ngIf="!isAuthenticated">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"> Sign in</a>
+          </li> 
+          <li class="nav-item" *ngIf="!isAuthenticated">
+              <a class="nav-link" routerLink="/register" routerLinkActive="active">Sign up</a>
+            </li> 
+            <li class="nav-item" *ngIf="isAuthenticated">
+              <a class="nav-link" (click)="logout()"> Logout</a>
+          </li> 
+          <li class="nav-item" *ngIf="isAuthenticated">
+              <a class="nav-link" routerLink="/add-podcast" routerLinkActive="active"> Add Podcast</a>
+          </li> 
+        </ul>  
+      </div>
+    </nav>
+  </div>
+  <div class="header-right">
+      <span class="theme-text">Change Theme</span>
+    <label class="switch">
+      <input type="checkbox" [checked]="selectedTheme" (change)="sendVal('')" (keydown)="sendVal($event)" aria-label="Theme Change">
+      <span class="slider round" tabindex="0"></span>
+    </label>
+  </div>
+</div>

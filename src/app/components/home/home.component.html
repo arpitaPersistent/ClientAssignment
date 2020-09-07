@@ -1,0 +1,16 @@
+<div class="podcast-container">
+    <div class="card" *ngFor="let podcast of podcasts;">
+        <div class="card-header">
+            <div class="right">
+                <a [routerLink]="['/add-podcast',podcast.id]" *ngIf="(isAuthenticated && user.sub === podcast.userId)">Edit</a>
+                <a (click)="deletePodcast(podcast.id)" *ngIf="(isAuthenticated && user.sub === podcast.userId)">Delete</a>
+            </div>
+            <h2 tabindex="0" >{{podcast.title | titlecase }}</h2>
+        </div>
+        <div class="card-body">
+            <p>{{podcast.categories}}</p>
+            <p>Descriprion -  {{ (podcast.desc.length>30)? (podcast.desc | slice:0:30)+'..':(podcast.desc) | titlecase }}</p>
+        </div>
+    </div>
+</div>
+

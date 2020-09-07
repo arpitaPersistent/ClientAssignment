@@ -1,0 +1,153 @@
+.header {
+  height: 50px;
+  width: 98.5%;
+  padding:10px;
+  background-color: var(--header-bg);
+  color: var(--text-color);
+  
+  .header-left {
+      width:85%;
+      display: inline-block;
+      & .navbar-brand {
+          width: 45%;
+          display: inline-block;
+          text-decoration: none;
+          color: var(--header-color);
+      }
+      ul{
+          width: 44%;
+          display: inline-block;
+          li {
+              display: inline-block;
+              padding: 0 10px;
+              a {
+                text-decoration: none;
+                color: var(--header-color);
+              }
+          }
+      }
+
+  }
+  .header-right {
+      width:14%;
+      display: inline-block;
+      span {
+          padding-right: 10px;
+      }
+  /* The switch - the box around the slider */
+  .switch {
+      position: relative;
+      display: inline-block;
+      width: 54px;
+      height: 27px;
+    }
+    
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {        
+  .main-container{
+      & .header {
+          & .header-left {
+              width: 75%;
+          }
+          & .header-right {
+              width: 25%;
+          }
+      }
+      .podcast-container {
+              & .card {
+                  width: 40%;                
+              }
+          
+      }
+  }
+}
+
+@media only screen and (max-width: 600px) {        
+    .header {
+      .header-left {
+          & .navbar-brand {
+              width: 25%;                    
+          }
+          ul{
+              width: 75%;
+              padding-left: 0;                    
+          }
+          
+    
+      }
+      .header-right {                
+          .theme-text {
+              display: none;
+          }
+      
+      }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+      
+  .header {
+    .header-left {
+        width: 80%;
+    }
+    .header-right {  
+        width: 10%;            
+    }
+  }
+}

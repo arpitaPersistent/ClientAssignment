@@ -1,0 +1,51 @@
+.podcast-container {
+    & .card {
+        width: 21%;
+        display: inline-grid;
+        border: 1px solid gray;
+        border-radius: 10px;
+        margin: 10px;
+        min-height: 165px;
+        padding: 5px 10px;
+        background: linear-gradient(45deg, rgba(66, 183, 245, 0.8) 0%, rgba(66, 245, 189, 0.1) 100%);
+        
+        & .card-header {
+            .right {
+              float: right;
+              a{
+                  padding: 5px;
+                  color: var(--text-color);
+              }
+            }
+            h2 {
+                color: var(--heading-color);
+            }
+        }
+        & .card-body {
+            p {
+               font-weight: 500;
+               color: var(--text-color);
+               word-break: break-all;
+            }
+        }
+    }
+
+}
+@media only screen and (max-width: 1000px) {  
+    .podcast-container {
+            & .card {
+                width: 40%;                
+            }
+        
+    }
+}
+
+@media only screen and (max-width: 600px) {        
+    .podcast-container {
+            & .card {
+                width: 35%;                
+            }
+        
+    }
+    
+}

@@ -1,0 +1,18 @@
+.register-container {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    h1 {
+        color: var(--heading-color);;
+    }
+    form{
+        & .form-group {
+            label  {
+                text-align: left;
+            }
+        }
+    }
+    .invalid-feedback {
+        color: var(--error-color);
+    }
+}
