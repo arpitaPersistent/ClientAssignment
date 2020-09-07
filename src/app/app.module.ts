@@ -28,7 +28,7 @@ import { AuthInterceptor } from './helpers/auth.interceptor';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
-    AddEditPodcastComponent
+    AddEditPodcastComponent,
   ],
   imports: [
     BrowserModule,

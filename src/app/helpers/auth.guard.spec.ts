@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import {cold, hot, time} from 'jest-marbles';
 import { AuthGuard } from './auth.guard';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
@@ -21,15 +20,14 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  /* it('should return false if the user state is not logged in', () => {
-    const expected = cold('(a|)', { a: false });
+  it('should return false if the user state is not logged in', () => {
+    const expected = false;
     expect(guard.canActivate()).toBe(expected);
   });
  
   it('should return true if the user state is logged in', () => {
     store.setState({ isAuthenticate: true });
-    const expected = cold('(a|)', { a: true });
- 
+    const expected = true;
     expect(guard.canActivate()).toBe(expected);
-  }); */
+  });
 });

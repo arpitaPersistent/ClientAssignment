@@ -1,3 +1,4 @@
+
 import { TestBed } from '@angular/core/testing';
 import { AuthInterceptor } from './auth.interceptor';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
@@ -43,8 +44,6 @@ describe('AuthInterceptor', () => {
       expect(response).toBeTruthy();
     });
 
-    /* const httpRequest = httpMock.expectOne(`${environment.apiUrl}/podcasts`);
-    expect(httpRequest.request.headers.has('Authorization')).toEqual(true); */
   });
 
 });

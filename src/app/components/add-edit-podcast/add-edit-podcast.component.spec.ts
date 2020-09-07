@@ -28,7 +28,7 @@ describe('AddEditPodcastComponent', () => {
       ],
       declarations: [ AddEditPodcastComponent ],
       providers: [provideMockStore({initialState})],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      //schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
     store = TestBed.inject(MockStore);
@@ -38,10 +38,12 @@ describe('AddEditPodcastComponent', () => {
     fixture = TestBed.createComponent(AddEditPodcastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    store.setState({ isAuthenticate: true });
   });
 });
 

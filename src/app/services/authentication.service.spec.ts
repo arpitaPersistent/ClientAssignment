@@ -1,81 +1,124 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject  } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
 import { TokenStorageService } from './token.service';
-import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { map } from 'rxjs/operators';
+import * as jwt_decode from 'jwt-decode';
+const dummyUsers = [
+  {
+    id: 3,
+    email: 'testingT@gmail.com',
+    password: 'testing',
+  },
+];
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
   let tokenService: TokenStorageService;
   let httpMock: HttpTestingController;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [ HttpClientModule, HttpClientTestingModule ],
-      providers: [ AuthenticationService, TokenStorageService]});
+    TestBed.configureTestingModule({imports: [ HttpClientTestingModule ],
+      providers: [ AuthenticationService]});
+
     service = TestBed.inject(AuthenticationService);
     tokenService = TestBed.inject(TokenStorageService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
+  beforeEach(inject(
+    [AuthenticationService, HttpTestingController],
+    (serviceInstance, httpMockInstance) => {
+      service = serviceInstance;
+      httpMock = httpMockInstance;
+    }
+  ));
+
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    const authService = TestBed.inject(AuthenticationService);
+    expect(authService).toBeTruthy();
   });
 
-  it(
-    'should be login', () => {
-        const mockUsers = { email: 'testingT@gmail.com', password: 'testing' };
-        service.login(mockUsers.email, mockUsers.password);
+  it('login: should return an array containing the valid user', () => {
+    const authService = TestBed.inject(AuthenticationService);
+    const mockCheckLoginUser = {
+      id: 3,
+      email: 'testingT@gmail.com',
+      password: 'testing',
+    };
+    authService.login(mockCheckLoginUser.email, mockCheckLoginUser.password)
+      .subscribe((user) => {
+        this.tokenStorage.saveToken(user.accessToken);
+        const decoded = jwt_decode(user.accessToken);
+        this.tokenStorage.saveUser(decoded);
 
-      /*   const mockReq = httpMock.expectOne(environment.apiUrl);
-        expect(mockReq.cancelled).toBeFalsy();
-        expect(mockReq.request.responseType).toBeTruthy();
-        mockReq.flush(mockUsers);
-
-        httpMock.verify(); */
+        expect(user).toBeDefined();
+        expect(decoded.sub).toBe(3);
+        expect(user.length).toBe(1);
+        expect(user.accessToken).not.toBeNull();
+      });
+    const req = httpMock.expectOne(`${environment.apiUrl}/login`);
+    req.flush(dummyUsers);
+    httpMock.verify();
   });
 
-  it('Should be login', () => {
-    const email = 'testingT@gmail.com';
-    const password = 'testing';
+  it('signup: should return an array containing the valid user', () => {
+    const authService = TestBed.inject(AuthenticationService);
+    const mockCheckLoginUser = {
+      firstname: 'new',
+      lastname: 'one',
+      email: 'new@gmail.com',
+      password: 'newOne',
+    };
+    authService.register(mockCheckLoginUser).subscribe((user) => {
+      
+      this.tokenStorage.saveToken(user.accessToken);
+      const decoded = jwt_decode(user.accessToken);
+      this.tokenStorage.saveUser(decoded);
 
-    const testing = service.login(email, password);
-   // const testing = tokenService.getToken();
-    expect(testing).toBeTruthy();
-
+      expect(user).toBeDefined();
+      expect(decoded.sub).toBe(3);
+      expect(user.length).toBe(1);
+      expect(user.accessToken).not.toBeNull();
+    });
+    const req = httpMock.expectOne(`${environment.apiUrl}/users/`);
+    req.flush(dummyUsers);
+    httpMock.verify();
   });
 
   it('Should be logout', () => {
-    const email = 'testingT@gmail.com';
-    const password = 'testing';
-
-    service.login(email, password);
-    service.logout();
-    const testing = tokenService.getToken();
-    expect(testing).toBeNull();
-  });
-
-  it('Should be register a user', () => {
-    const form = {
-      firstName: 'test',
-      lastName: 'test',
-      email: 'testT@gmail.com',
-      password: 'test123'
+    const authService = TestBed.inject(AuthenticationService);
+    const mockCheckLoginUser = {
+      id: 3,
+      email: 'testingT@gmail.com',
+      password: 'testing',
     };
 
-    const testing = service.register(form);
-    expect(testing).toBeTruthy();
+    const res = authService.logout();
+    expect(res).not.toBeDefined();
+    
   });
 
-  it('Should get all user', () => {
-      const test = service.getAll();
-      expect(test).toBeTruthy();
+  it('getById: should return a Podcast by given id', () => {
+    const authService = TestBed.inject(AuthenticationService);
+    authService.getById('1').subscribe((user) => {
+      expect(user.id).toBe(1);
+    });
+    const req = httpMock.expectOne(`${environment.apiUrl}/users/1`);
+    req.flush(dummyUsers);
+    httpMock.verify();
   });
 
-  it('Should be login', () => {
-      const test = service.getById('1');
-      expect(test).toBeTruthy();
+  it('getAllPodcasts: should return a list of Podcast', () => {
+    const authService = TestBed.inject(AuthenticationService);
+    authService.getAll().subscribe((user) => {
+      expect(user).toBeDefined();
+      expect(user.length).toBe(1);
+      const req = httpMock.expectOne(`${environment.apiUrl}/users/`);
+      req.flush(dummyUsers);
+      httpMock.verify();
+    });
   });
 
 });

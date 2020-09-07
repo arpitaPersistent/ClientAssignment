@@ -23,7 +23,6 @@ export class AuthenticationService {
       .pipe(map(user => {
         // store user details and jwt token in seesion storage to keep user logged in between page refreshes
         this.tokenStorage.saveToken(user.accessToken);
-        console.log(this.tokenStorage.getToken());
         const decoded = jwt_decode(user.accessToken);
         this.tokenStorage.saveUser(decoded);
         return decoded;
