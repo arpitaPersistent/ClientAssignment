@@ -14,6 +14,7 @@ const testPodcast: Podcast = {
     id:1,
     title:"test",
     desc: "test",
+    categories:['art'],
     userId: 1
 };
 
@@ -34,7 +35,7 @@ describe('LoadPodcast', () => {
         const podcastAction = new LoadPodcast();
         const passedState: State = {
             podcast: null,
-            podcasts: [testPodcast],
+            podcasts: null,
             successMessage: null,
             errorMessage: null
         };

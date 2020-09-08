@@ -1,146 +1,43 @@
 {
   "users": [
-    {
-      "id": 1,
-      "email": "arpitaj@gmail.com",
-      "password": "arpitaj123",
-      "firstName": "arpita",
-      "lastName": "jain"
-    },
-    {
-      "firstName": "test",
-      "lastName": "test",
-      "email": "test@gmail.com",
-      "password": "test123",
-      "id": 2
-    },
+    
     {
       "email": "testingT@gmail.com",
       "password": "$2a$10$D4tBlvRcRftit9Kyjf62MuwM5xXI90iIgd0drcjUUlHYhuBtePP2W",
       "firstName": "testing",
       "lastName": "testing",
       "id": 3
-    },
-    {
-      "email": "abhi@gmail.com",
-      "password": "$2a$10$q93qsbmdppJ0YHaTmfWZP.GUsfRI336gW7FPZm1LUFFc00RCy0nlm",
-      "firstName": "abhi",
-      "lastName": "jain",
-      "id": 4
-    },
-    {
-      "email": "ggh@gmail.com",
-      "password": "$2a$10$CMBYf9/mCPu9.QgjGmGt8.C2bktqPJriz52KglwPEt78NqMaqbJP6",
-      "firstName": "ggg",
-      "lastName": "ggg",
-      "id": 5
-    },
-    {
-      "email": "abhi123@gmail.com",
-      "password": "$2a$10$2ON81v6Lb/cvIzNzK8.cqOnzNN8gbUiIkV0mOksWP3zPOHLVyawhW",
-      "firstName": "abhi",
-      "lastName": "abhi",
-      "id": 6
     }
   ],
   "podcasts": [
     {
-      "title": "test",
-      "desc": "test",
+      "title": "Non-Descript Podcast of Things",
+      "desc": "Jesse's Non-Descript Podcast of Things",
       "categories": [
-        "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
+        "Fiction"
       ],
       "userId": "3",
       "id": 1
     },
     {
-      "title": "aass",
-      "desc": "cv",
+      "title": "Valerie In Toronto",
+      "desc": "A personal, sometimes-profane primer on things particular to Toronto and Canada, from a radio refugee born in the USA but Canadian by choice.",
       "categories": [
-        "Art",
-        "Comedy  ",
         "Action",
-        "Fiction",
-        "Music",
-        "News"
+        "Fiction"
       ],
       "userId": "3",
       "id": 2
     },
     {
-      "title": "xcv",
-      "desc": "cvcv",
+      "title": "6 Minute Grammar",
+      "desc": "Learn English grammar in six minutes. Every Tuesday join two of our presenters and learn a new key area of grammar. Our presenters include Finn, Emma, Rob, Neil, Sophie & Alice.",
       "categories": [
         "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
+        "Language"
       ],
       "userId": "3",
       "id": 3
-    },
-    {
-      "title": "xcv",
-      "desc": "cvcv",
-      "categories": [
-        "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
-      ],
-      "userId": "3",
-      "id": 4
-    },
-    {
-      "title": "xcv",
-      "desc": "cvcv",
-      "categories": [
-        "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
-      ],
-      "userId": "3",
-      "id": 5
-    },
-    {
-      "title": "xcv",
-      "desc": "cvcv",
-      "categories": [
-        "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
-      ],
-      "userId": "3",
-      "id": 6
-    },
-    {
-      "title": "xcv",
-      "desc": "cvcv",
-      "categories": [
-        "Art",
-        "Comedy  ",
-        "Action",
-        "Fiction",
-        "Music",
-        "News"
-      ],
-      "userId": "3",
-      "id": 7
     }
   ]
 }

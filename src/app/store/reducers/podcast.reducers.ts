@@ -20,10 +20,12 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: All): State {
   switch (action.type) {
+    
     case PodcastActionTypes.LOAD_SUCCESS: {
+      console.log(action.payload);
         return {
           ...state,
-          podcasts: [action.payload],
+          podcasts: action.payload,
         };
       }
     case PodcastActionTypes.LOAD_FAILURE: {

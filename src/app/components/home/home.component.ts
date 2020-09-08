@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
       this.user = res.auth.user;
       this.errorMessage = res.auth.errorMessage;
       this.podcasts = res.podcast.podcasts;
+      console.log(this.podcasts,'this.podcasts');
     });
   }
 
