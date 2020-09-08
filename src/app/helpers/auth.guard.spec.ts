@@ -1,10 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthGuard } from './auth.guard';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { selectAuthState, AppState } from '../store/app.states';
+import { Store } from '@ngrx/store';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
-  let store: MockStore;
+  let store: Store<AppState>;
+  let storemock: MockStore;
+   
   const initialState = {
     isAuthenticated: false,
   }
@@ -12,8 +16,9 @@ describe('AuthGuard', () => {
     TestBed.configureTestingModule({imports: [],
       providers: [provideMockStore({initialState})]});
     
-    store = TestBed.inject(MockStore);
+    storemock = TestBed.inject(MockStore);
     guard = TestBed.inject(AuthGuard);
+    
   });
 
   it('should be created', () => {
@@ -26,7 +31,7 @@ describe('AuthGuard', () => {
   });
  
   it('should return true if the user state is logged in', () => {
-    store.setState({ isAuthenticate: true });
+    guard.isAuthenticated = true;
     const expected = true;
     expect(guard.canActivate()).toBe(expected);
   });

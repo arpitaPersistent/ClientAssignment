@@ -57,6 +57,7 @@ describe('AuthenticationService', () => {
         expect(decoded.sub).toBe(3);
         expect(user.length).toBe(1);
         expect(user.accessToken).not.toBeNull();
+        expect(this.tokenStorage.saveUser(decoded)).toBe(decoded);
       });
     const req = httpMock.expectOne(`${environment.apiUrl}/login`);
     req.flush(dummyUsers);
@@ -71,8 +72,7 @@ describe('AuthenticationService', () => {
       email: 'new@gmail.com',
       password: 'newOne',
     };
-    authService.register(mockCheckLoginUser).subscribe((user) => {
-      
+    authService.register(mockCheckLoginUser).subscribe((user) => {      
       this.tokenStorage.saveToken(user.accessToken);
       const decoded = jwt_decode(user.accessToken);
       this.tokenStorage.saveUser(decoded);
@@ -81,6 +81,7 @@ describe('AuthenticationService', () => {
       expect(decoded.sub).toBe(3);
       expect(user.length).toBe(1);
       expect(user.accessToken).not.toBeNull();
+      expect(this.tokenStorage.saveUser(decoded)).toBe(decoded);
     });
     const req = httpMock.expectOne(`${environment.apiUrl}/users/`);
     req.flush(dummyUsers);
@@ -94,7 +95,6 @@ describe('AuthenticationService', () => {
       email: 'testingT@gmail.com',
       password: 'testing',
     };
-
     const res = authService.logout();
     expect(res).not.toBeDefined();
     
@@ -120,5 +120,8 @@ describe('AuthenticationService', () => {
       httpMock.verify();
     });
   });
+
+
+
 
 });

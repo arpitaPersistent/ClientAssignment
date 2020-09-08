@@ -18,6 +18,7 @@ export const lightTheme = {
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
+
   toggleDark(): void {
     this.setTheme(darkTheme);
   }
@@ -26,7 +27,7 @@ export class ThemeService {
     this.setTheme(lightTheme);
   }
 
-  private setTheme(theme: {}): void {
+  public setTheme(theme: {}): void {
     Object.keys(theme).forEach(k =>
       document.documentElement.style.setProperty(`--${k}`, theme[k])
     );

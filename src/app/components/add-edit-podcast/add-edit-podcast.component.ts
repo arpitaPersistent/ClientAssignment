@@ -62,6 +62,9 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
     }
   }
 
+  get f(): any { return this.podcastForm.controls; }
+
+
   /*
   ** Back to the main Page   **
   */
@@ -69,29 +72,7 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('');
   }
 
-  /*
-  ** get title   **
-  */
-  get title(): any {
-    return this.podcastForm.get('title');
-  }
-
-  /*
-  ** get description   **
-  */
-  get desc(): any {
-    return this.podcastForm.get('desc');
-  }
-
-  /*
-  ** get categories   **
-  */
-  get categories(): any {
-  return this.podcastForm.get('categories');
-  }
-
-
-  /*
+   /*
   **  Submit Form   **
   */
   public onSubmit(): void {

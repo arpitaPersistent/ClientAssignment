@@ -41,10 +41,8 @@ describe('HomeComponent', () => {
   });
 
   it('should create', () => {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
-
-  /* it('should check with all the all the podcast', () => {
-    expect(component.getAllPodcasts()).toBeTruthy();
-  }); */
 });

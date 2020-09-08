@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: All): State {
     case PodcastActionTypes.LOAD_SUCCESS: {
         return {
           ...state,
-          podcasts: action.payload,
+          podcasts: [action.payload],
         };
       }
     case PodcastActionTypes.LOAD_FAILURE: {
@@ -55,21 +55,21 @@ export function reducer(state = initialState, action: All): State {
     case PodcastActionTypes.ADD_FAILURE: {
       return {
         ...state,
-        errorMessage: 'Incorrect email and/or password.'
+        errorMessage: 'Podcast Detail has not been added successfully.',
       };
     }
     case PodcastActionTypes.EDIT_SUCCESS: {
       return {
         ...state,
         podcast: action.payload,
-        successMessage: 'Podcast Detail has been added successfully.',
+        successMessage: 'Podcast Detail has been updated successfully.',
         errorMessage: null
       };
     }
     case PodcastActionTypes.EDIT_FAILURE: {
       return {
         ...state,
-        errorMessage: 'That email is already in use.'
+        errorMessage: 'Detail has not been updated.'
       };
     }
     case PodcastActionTypes.DELETE_SUCCESS: {

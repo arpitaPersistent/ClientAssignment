@@ -1,5 +1,5 @@
 
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { AuthInterceptor } from './auth.interceptor';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import {
@@ -9,9 +9,10 @@ import {
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PodcastService } from '../services/podcast.service';
 import { environment } from 'src/environments/environment';
+import { Podcast } from '../models/podcast';
 
 describe('AuthInterceptor', () => {
-  let authService: PodcastService;
+  let service: PodcastService;
   let httpMock: HttpTestingController;
   let interceptor: AuthInterceptor;
   let store: MockStore;
@@ -29,21 +30,13 @@ describe('AuthInterceptor', () => {
     });
 
     store = TestBed.inject(MockStore);
-    authService = TestBed.inject(PodcastService);
+    service = TestBed.inject(PodcastService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     const interceptor = TestBed.inject(AuthInterceptor);
     expect(interceptor).toBeTruthy();
-  });
-
-  it('should add an Authorization header', () => {
-    store.setState({ isAuthenticate: true });
-    authService.getAll().subscribe(response => {
-      expect(response).toBeTruthy();
-    });
-
   });
 
 });

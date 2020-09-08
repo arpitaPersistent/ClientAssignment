@@ -4,6 +4,8 @@ import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule} from '@angular/router/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { FormBuilder } from '@angular/forms';
+
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -32,6 +34,10 @@ describe('LoginComponent', () => {
   });
 
   it('should create', () => {
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
+
+ 
 });

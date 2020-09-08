@@ -32,6 +32,8 @@ describe('RegisterComponent', () => {
   });
 
   it('should create', () => {
+    fixture = TestBed.createComponent(RegisterComponent);
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });

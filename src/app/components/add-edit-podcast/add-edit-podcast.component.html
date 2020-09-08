@@ -6,14 +6,14 @@
         <label for="title">Title</label>
         <input type="text" class="form-control" formControlName="title" required aria-label="Podcast Title">
         
-            <div *ngIf="title.errors" class="invalid-feedback">
-                <div *ngIf="title.errors?.required" class="invalid-feedback">
+            <div *ngIf="f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors?.required" class="invalid-feedback">
                     Title is required
                 </div>
             </div>
         
-            <div *ngIf="title.errors" class="invalid-feedback">
-                <div *ngIf="title.errors?.maxlength" class="invalid-feedback">
+            <div *ngIf="f.title.errors" class="invalid-feedback">
+                <div *ngIf="f.title.errors?.maxlength" class="invalid-feedback">
                     Title must not be more than 20 characters long.
                 </div>
             </div> 
@@ -22,8 +22,8 @@
             <label for="desc">Description</label>
             <textarea class="form-control" rowa="10" cols="100" formControlName="desc" requiredcaria-label="Podcast Description"></textarea>
         
-            <div *ngIf="desc.errors" class="invalid-feedback">
-                <div *ngIf="desc.errors?.required" class="invalid-feedback">
+            <div *ngIf="f.desc.errors" class="invalid-feedback">
+                <div *ngIf="f.desc.errors?.required" class="invalid-feedback">
                     Description is required
                 </div>
             </div>
@@ -33,8 +33,8 @@
             <tag-input [ngModel]="items" formControlName="categories" aria-label="Podcast Categories">
             </tag-input>
          
-            <div *ngIf="categories.errors" class="invalid-feedback">
-                <div *ngIf="categories.errors?.required" class="invalid-feedback">
+            <div *ngIf="f.categories.errors" class="invalid-feedback">
+                <div *ngIf="f.categories.errors?.required" class="invalid-feedback">
                     Category is required
                 </div>
             </div>

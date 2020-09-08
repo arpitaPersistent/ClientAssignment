@@ -32,6 +32,8 @@ describe('HeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeDefined();
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    expect(component).toBeTruthy();
   });
 });
