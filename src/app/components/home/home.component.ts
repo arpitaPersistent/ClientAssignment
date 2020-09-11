@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PodcastService } from 'src/app/services/podcast.service';
 import { Podcast } from '../../models/podcast';
-import { Store } from '@ngrx/store';;
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
-import { Router } from '@angular/router';
 import { DeletePodcast, LoadPodcast } from 'src/app/store/actions/podcast.actions';
 
 @Component({
@@ -20,9 +18,7 @@ export class HomeComponent implements OnInit {
   errorMessage: any;
   successMessage: any;
 
-  constructor(private podcastService: PodcastService,
-              private store: Store,
-              private router: Router) {
+  constructor(private store: Store) {
     // this.getState = this.store.select(selectAuthState);
   }
 
@@ -37,8 +33,10 @@ export class HomeComponent implements OnInit {
       this.isAuthenticated = res.auth.isAuthenticated;
       this.user = res.auth.user;
       this.errorMessage = res.auth.errorMessage;
-      this.podcasts = res.podcast.podcasts;
-      console.log(this.podcasts,'this.podcasts');
+      console.log(this.podcasts,'poscast');
+      if (res.podcast.podcasts.length > 0) {
+        this.podcasts = res.podcast.podcasts;
+      }
     });
   }
 

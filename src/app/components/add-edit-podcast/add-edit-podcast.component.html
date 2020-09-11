@@ -1,10 +1,10 @@
 <div class="form-container">
     <h1 *ngIf="!id">  Add Poadcast</h1>
     <h1 *ngIf="id">  Edit Poadcast</h1>
-    <form [formGroup]="podcastForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" formControlName="title" required aria-label="Podcast Title">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" formControlName="title" required aria-label="Podcast Title">
         
             <div *ngIf="f.title.errors" class="invalid-feedback">
                 <div *ngIf="f.title.errors?.required" class="invalid-feedback">
@@ -40,7 +40,9 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="hidden" formControlName="userId" [ngModel]="user.sub" >
+            <div *ngIf="user">
+                <input type="hidden" formControlName="userId" value="{{user.sub}}" >
+            </div>
             <button type="submit" *ngIf="!id" class="btn btn-success">Submit</button>
             <button type="submit" *ngIf="id" class="btn btn-success">Update</button>
             <button type="button" (click)="back()" class="btn btn-success">Back</button>

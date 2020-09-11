@@ -11,7 +11,7 @@ import { ThemeService } from '../../services/theme.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Output() selTheme: EventEmitter<boolean> = new EventEmitter();
+  /* @Output() selTheme: EventEmitter<boolean> = new EventEmitter(); */
 
   getState: Observable<any>;
   isAuthenticated: false;
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private store: Store, private themeService: ThemeService)
   {
-    this.getState = this.store.select(selectAuthState); 
+    this.getState = this.store.select(selectAuthState);
   }
 
   ngOnInit(): void {
@@ -30,6 +30,12 @@ export class HeaderComponent implements OnInit {
       this.user = state.user;
       this.errorMessage = state.errorMessage;
     });
+
+    if (this.selectedTheme) {
+      this.themeService.toggleDark();
+    } else {
+      this.themeService.toggleLight();
+    }
   }
   // Logout
   logout(): void {

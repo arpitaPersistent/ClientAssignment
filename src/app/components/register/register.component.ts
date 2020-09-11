@@ -15,7 +15,7 @@ import { selectAuthState } from 'src/app/store/app.states';
 })
 
 export class RegisterComponent implements OnInit {
-    form: FormGroup;
+    registerForm: FormGroup;
     submitted = false;
 
     getState: Observable<any>;
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     ) { this.getState = this.store.select(selectAuthState); }
 
     ngOnInit(): void {
-        this.form = this.formBuilder.group({
+        this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', Validators.required],
@@ -41,19 +41,19 @@ export class RegisterComponent implements OnInit {
     }
 
     // convenience getter for easy access to form fields
-    get f(): any { return this.form.controls; }
+    get f(): any { return this.registerForm.controls; }
 
     // submit form
     onSubmit(): void {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.form.invalid) {
+        if (this.registerForm.invalid) {
             return;
         }
 
         const payload = {
-            form: this.form.value
+            form: this.registerForm.value
           };
         this.store.dispatch(new SignUp(payload));
     }

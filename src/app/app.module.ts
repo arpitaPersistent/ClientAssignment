@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AuthEffects } from './store/effects/auth.effects';
-import { PodcastEffects } from './store/effects/podcast.effects'
+import { PodcastEffects } from './store/effects/podcast.effects';
 import { reducers } from './store/app.states';
 import { AddEditPodcastComponent } from './components/add-edit-podcast/add-edit-podcast.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!

@@ -13,7 +13,7 @@ import { AppState, selectAuthState } from 'src/app/store/app.states';
 })
 export class AddEditPodcastComponent implements OnInit, OnDestroy {
 
-  podcastForm: FormGroup;
+  form: FormGroup;
   subscription: any;
   id = '';
   podcast: any;
@@ -21,24 +21,18 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
   items = ['Art', 'Comedy  ', 'Action', 'Fiction', 'Music', 'News'];
   getState: Observable<any>;
   isAuthenticated: false;
-  user = null;
+  user = {sub: null};
   errorMessage = null;
   successMessage = null;
 
 
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute, private router: Router, private store: Store<AppState>) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute,
+              private router: Router, private store: Store<AppState>) {
                 this.getState = this.store.select(selectAuthState);
-                this.id = this.route.snapshot.paramMap.get('id');
                }
 
   ngOnInit(): void {
-    this.getState.subscribe((state) => {
-      this.isAuthenticated = state.isAuthenticated;
-      this.errorMessage = state.errorMessage;
-      this.user = state.user;
-    });
-    this.podcastForm = this.fb.group({
+    this.form = this.fb.group({
       title: [null, Validators.compose(
         [Validators.maxLength(20), Validators.required])],
       desc: [null,  Validators.required],
@@ -46,10 +40,23 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
       userId: [this.user.sub]
     });
 
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.id = this.route.snapshot.paramMap.get('id');
+    }
+    
+    this.getState.subscribe((state) => {
+      this.isAuthenticated = state.isAuthenticated;
+      this.errorMessage = state.errorMessage;
+      this.user = state.user;
+    });
+
     this.subscription = this.store.subscribe((res: any) => {
-      this.podcast = res.podcast.podcast;
-      if (this.podcast !== null) {
-        this.podcastForm.patchValue({
+      if (res.podcast.podcast) {
+        this.podcast = res.podcast.podcast;
+      }
+      
+      if (this.podcast !== null && this.podcast !== undefined) {
+        this.form.patchValue({
           title: this.podcast.title,
           desc: this.podcast.desc,
           categories: this.podcast.categories,
@@ -62,7 +69,7 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
     }
   }
 
-  get f(): any { return this.podcastForm.controls; }
+  get f(): any { return this.form.controls; }
 
 
   /*
@@ -76,14 +83,14 @@ export class AddEditPodcastComponent implements OnInit, OnDestroy {
   **  Submit Form   **
   */
   public onSubmit(): void {
-    if (this.podcastForm.invalid) {
+    if (this.form.invalid) {
       return;
    }
     this.submitted = true;
-    if (!this.podcastForm.value ) { return; }
+    if (!this.form.value ) { return; }
 
     const payload = {
-      form: this.podcastForm.value,
+      form: this.form.value,
       id: this.id
     };
     this.store.dispatch(new AddPodcast(payload));
